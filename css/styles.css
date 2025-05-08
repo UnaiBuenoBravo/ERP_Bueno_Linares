@@ -1,0 +1,229 @@
+:root {
+    --primary-color: #875A7B;
+    --secondary-color: #00A09D;
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --border-color: #ddd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: #fff;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 30px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.2em;
+}
+
+header p {
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+nav {
+    background-color: white;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+
+
+nav ul li {
+    position: relative;
+}
+
+nav ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+nav ul li ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    z-index: 1000;
+    flex-direction: column;
+}
+
+nav ul li:hover > ul {
+    display: flex;
+}
+
+nav ul li ul li {
+    margin: 0;
+    padding: 5px 20px;
+}
+
+nav ul li ul li a {
+    color: var(--primary-color);
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+nav ul li ul li a:hover {
+    background-color: var(--light-bg);
+    color: var(--secondary-color);
+    border-radius: 4px;
+}
+
+.authors {
+    background-color: var(--light-bg);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 30px 0;
+    border-left: 4px solid var(--secondary-color);
+}
+
+.authors h3 {
+    color: var(--secondary-color);
+    margin-bottom: 10px;
+}
+
+.authors ul {
+    list-style-type: none;
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    color: var(--primary-color);
+    margin: 40px 0 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+h3 {
+    color: var(--secondary-color);
+    margin: 30px 0 15px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+ul, ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+.note {
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    padding: 15px;
+    margin: 20px 0;
+    border-radius: 4px;
+}
+
+.step {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.step h4 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.step-number {
+    background-color: var(--primary-color);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    font-size: 0.9em;
+}
+
+code {
+    background-color: var(--light-bg);
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+.image-placeholder {
+    background-color: var(--light-bg);
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin: 15px 0;
+    text-align: center;
+    color: #666;
+}
+
+.conclusion {
+    background-color: #e8f4f8;
+    border-left: 4px solid #4dabf7;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 20px 15px;
+    }
+    
+    .step {
+        padding: 15px;
+    }
+}

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Implementación y Configuración de Odoo con énfasis en CRM</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Guía de Implementación y Configuración de Odoo con énfasis en CRM</h1>
+        <p>Sistema ERP de código abierto para gestión empresarial integral y administración de relaciones con clientes</p>
+        <nav id="navbar">
+            <ul>
+                <li><a href="#introduccion">1. Introducción</a></li>
+                <li><a href="#instalacion">2. Instalación y Configuración</a>
+                    <ul>
+                        <li><a href="#requisitos">2.1. Requisitos del Sistema</a></li>
+                        <li><a href="#instalacion-windows">2.2. Proceso de Instalación en Windows</a></li>
+                        <li><a href="#configuracion-inicial">2.3. Configuración Base del Sistema</a></li>
+                    </ul>
+                </li>
+                <li><a href="#modulo-crm">3. Módulo CRM y Sitio Web</a>
+                    <ul>
+                        <li><a href="#instalacion-crm-web">3.1. Implementación de Módulos</a></li>
+                        <li><a href="#configuracion-integrada">3.2. Integración y Parametrización</a></li>
+                        <li><a href="#funcionalidades-conjuntas">3.3. Funcionalidades Destacadas</a></li>
+                        <li><a href="#ejemplo-uso">3.4. Caso de Implementación</a></li>
+                    </ul>
+                </li>
+                <li><a href="#backup">4. Gestión de Copias de Seguridad</a>
+                    <ul>
+                        <li><a href="#backup-interno">4.1. Respaldo desde Interfaz Web</a></li>
+                        <li><a href="#restauracion">4.2. Proceso de Restauración</a></li>
+                    </ul>
+                </li>
+                <li><a href="#conclusiones">5. Conclusiones</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="authors">
+        <h3>Autores:</h3>
+        <ul>
+            <li>Alejandro Linares</li>
+            <li>Unai Bueno</li>
+        </ul>
+        <p>Fecha: Mayo 2025</p>
+    </div>
+
+    <h2 id="introduccion">1. Introducción</h2>
+    <p>Odoo constituye una solución integral de planificación de recursos empresariales (ERP) de código abierto que permite la gestión centralizada de los procesos críticos de una organización. Entre su arquitectura modular, el componente CRM (Customer Relationship Management) destaca por su capacidad para administrar eficientemente el ciclo de vida completo de las relaciones con clientes, trazabilidad de oportunidades comerciales y optimización del pipeline de ventas.</p>
+    
+    <p>Esta documentación técnica está enfocada a profesionales y estudiantes del ámbito de sistemas informáticos que requieran implementar Odoo en entornos Windows, con particular énfasis en la configuración e integración del módulo CRM. A lo largo del presente informe, se detallará el proceso de instalación, parametrización inicial, configuración avanzada de CRM y los procedimientos recomendados para la salvaguarda de la información mediante copias de seguridad.</p>
+
+    <div class="note">
+        <p><strong>Nota técnica:</strong> La presente documentación se basa en Odoo 16 Community Edition, versión estable más reciente al momento de la implementación. Los procedimientos descritos podrían requerir adaptaciones en versiones posteriores del sistema.</p>
+    </div>
+
+    <h2 id="instalacion">2. Guía de Instalación y Configuración Básica de Odoo en Windows</h2>
+
+    <h3 id="requisitos">2.1. Requisitos del Sistema</h3>
+    <p>Previo a la implementación, es necesario verificar que el entorno cumple con las siguientes especificaciones técnicas mínimas:</p>
+    <ul>
+        <li>Sistema operativo: Windows 10/11 (x64)</li>
+        <li>Procesador: 2 GHz multi-core o superior</li>
+        <li>Memoria RAM: 4 GB mínimo (8 GB recomendado para entornos de producción)</li>
+        <li>Almacenamiento: 20 GB libres en disco SSD preferentemente</li>
+        <li>Conectividad: Acceso a Internet para la descarga de componentes</li>
+        <li>Permisos: Privilegios de administrador local en el sistema</li>
+    </ul>
+
+    <h3 id="instalacion-windows">2.2. Proceso de Instalación en Windows</h3>
+    <p>Para la implementación de Odoo en entornos Windows, utilizaremos el paquete de instalación oficial que integra todos los componentes necesarios (PostgreSQL como SGBD, entorno Python, dependencias, etc.).</p>
+
+    <div class="step">
+        <h4><span class="step-number">1</span> Obtención del instalador</h4>
+        <p>Descarga el instalador desde el repositorio oficial:</p>
+        <ol>
+            <li>Accede al portal <a href="https://www.odoo.com/es_ES/page/download" target="_blank">https://www.odoo.com/es_ES/page/download</a></li>
+            <li>Selecciona la opción "Community" para obtener la versión gratuita y de código abierto</li>
+            <li>Ejecuta la descarga del paquete para plataforma Windows</li>
+        </ol>
+        <div class="image-placeholder">
+            <img src="./img/weboddoo.png" alt="Portal de descarga de Odoo">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">2</span> Ejecución del instalador</h4>
+        <ol>
+            <li>Localiza el archivo binario descargado (con nomenclatura odoo_16.0.XXXXX.exe)</li>
+            <li>Ejecuta con permisos elevados mediante la opción "Ejecutar como administrador"</li>
+            <li>Autoriza la ejecución ante solicitudes del control de cuentas de usuario (UAC)</li>
+        </ol>
+        <div class="image-placeholder">
+            <img src="./img/ins0.png" alt="Inicio de instalación">
+            <img src="./img/ins1.png" alt="Asistente de instalación">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">3</span> Aceptación de términos de licencia</h4>
+        <p>Revisa el EULA (End User License Agreement), selecciona la opción "Acepto los términos del Acuerdo de Licencia" y continúa con el proceso mediante "Siguiente".</p>
+        <div class="image-placeholder">
+            <img src="./img/lic.png" alt="Aceptación de licencia GPL">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">4</span> Parametrización de PostgreSQL</h4>
+        <p>Configura el servidor de base de datos relacional que soportará el sistema:</p>
+        <ul>
+            <li><strong>Puerto TCP de servicio PostgreSQL:</strong> Mantén 5432 como valor predeterminado salvo conflictos con otros servicios</li>
+            <li><strong>Credenciales de administración:</strong> Establece una contraseña robusta con caracteres alfanuméricos y especiales para la cuenta postgres</li>
+        </ul>
+        <p>Continúa el asistente mediante "Siguiente".</p>
+        <div class="image-placeholder">
+            <img src="./img/ins2.png" alt="Configuración de PostgreSQL">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">5</span> Configuración de parámetros de Odoo</h4>
+        <p>Define los parámetros básicos del servidor de aplicaciones:</p>
+        <ul>
+            <li><strong>Puerto de servicio HTTP:</strong> Valor predeterminado 8069 (verificar disponibilidad en firewall local)</li>
+            <li><strong>Contraseña maestra:</strong> Credencial crítica para la administración de bases de datos; implementar política de contraseñas seguras</li>
+        </ul>
+        <p>Continúa mediante "Siguiente".</p>
+        <div class="image-placeholder">
+            <img src="./img/conf.png" alt="Configuración del servidor Odoo">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">6</span> Definición de ruta de instalación</h4>
+        <p>Especifica el directorio de instalación o acepta la ubicación predeterminada recomendada (habitualmente en Program Files) y avanza con "Siguiente".</p>
+        <div class="image-placeholder">
+            <img src="./img/ubi.png" alt="Selección de directorio">
+        </div>
+    </div>
+    <div class="step">
+        <h4><span class="step-number">7</span> Inicio del proceso de implementación</h4>
+        <p>Verifica la configuración global y confirma la instalación mediante "Instalar" para iniciar el despliegue de componentes.</p>
+        <div class="image-placeholder">
+            <img src="./img/ins3.png" alt="Confirmación de instalación">
+        </div>
+    </div>
+
+    <div class="step">
+        <h4><span class="step-number">8</span> Finalización del proceso</h4>
+        <p>Tras completar la implementación, selecciona "Finalizar". El sistema iniciará automáticamente el servicio de Odoo, permitiendo acceder mediante navegador web a la interfaz de administración: <strong>http://localhost:8069</strong>.</p>
+        <p>Nota técnica: En caso de errores durante la instalación, consultar los logs de eventos en %ProgramData%\Odoo\server para diagnóstico avanzado. Verificar también conflictos de puertos y permisos de sistema.</p>
+    </div>
+
+    <h2 id="modulo-crm">3. Módulo CRM y Sitio Web</h2>
+
+<h3 id="instalacion-crm-web">3.1. Implementación de Módulos</h3>
+<p>Desde el panel de administración de Odoo, accede a “Aplicaciones” y busca los módulos “CRM” y “Website”. Haz clic en instalar en ambos. Si no aparecen, usa el botón de “Actualizar lista de aplicaciones”.</p>
+
+
+<h3 id="configuracion-integrada">3.2. Configuración Integrada</h3>
+<p>Una vez instalados los componentes, configura la integración para automatizar la captura de oportunidades comerciales desde el sitio web:</p>
+<ul>
+    <li>Desde la administración del módulo Website, accede al editor visual e implementa formularios de captura mediante el sistema drag-and-drop.</li>
+    <li>Configura las acciones post-envío del formulario para generar automáticamente registros en CRM mediante la parametrización del componente form (Configuración → Acción de Formulario → Crear Lead).</li>
+    <li>En el módulo CRM, define las etapas del pipeline comercial según el flujo de trabajo específico (Calificación, Propuesta, Negociación, Ganado/Perdido).</li>
+    <li>Implementa reglas de asignación automática basadas en criterios predefinidos como región geográfica, idioma o producto solicitado.</li>
+</ul>
+
+
+<h3 id="funcionalidades-conjuntas">3.3. Funcionalidades Destacadas</h3>
+<p>La arquitectura integrada entre CRM y Website proporciona un ecosistema completo para el ciclo de adquisición y conversión de clientes:</p>
+<ul>
+    <li><strong>Sistema de captura omnicanal:</strong> Implementación de formularios web que generan leads clasificados automáticamente en el CRM con asignación de puntajes (scoring).</li>
+    <li><strong>Automatización de workflow:</strong> El motor de flujos del CRM permite programar acciones automatizadas, notificaciones y escalados según los SLA definidos.</li>
+    <li><strong>Editor WYSIWYG avanzado:</strong> La herramienta de edición visual permite implementar landing pages y formularios sin necesidad de conocimientos en HTML/CSS.</li>
+    <li><strong>Business Intelligence integrada:</strong> Generación de métricas unificadas desde visitas web hasta conversión en ventas, con cuadros de mando personalizables.</li>
+</ul>
+
+
+<h3 id="ejemplo-uso">3.4. Caso de Implementación</h3>
+<p>Implementación práctica para empresa de servicios de consultoría IT:</p>
+<ol>
+    <li>Se publica formulario de solicitud de información en landing page específica utilizando el builder integrado.</li>
+    <li>Al recibir una solicitud, el sistema genera automáticamente un lead en CRM con categorización por servicio solicitado.</li>
+    <li>El responsable comercial recibe notificación en tiempo real y gestiona el seguimiento mediante la secuencia predefinida: contacto inicial, envío de propuesta, presentación y cierre.</li>
+    <li>El portal web implementa personalización dinámica basada en cookies y estado de autenticación para ofrecer contenido personalizado según perfil.</li>
+</ol>
+
+        <h2 id="backup">4. Gestión de Copias de Seguridad</h2>
+
+        <h3 id="backup-interno">4.1. Respaldo desde Interfaz Web</h3>
+        <p>Odoo proporciona funcionalidades nativas para la generación de copias de seguridad desde su interfaz de administración de bases de datos. Para implementar esta salvaguarda, siga el siguiente procedimiento:</p>
+        <ol>
+            <li>Acceda al gestor de bases de datos mediante: <a href="http://localhost:8069/web/database/manager" target="_blank">http://localhost:8069/web/database/manager</a></li>
+            <li>Visualizará el listado de instancias disponibles. Seleccione la opción <strong>Backup</strong> correspondiente a la base de datos objetivo.</li>
+            <li>Introduzca las credenciales de administrador de base de datos (contraseña maestra).</li>
+            <li>Confirme mediante <strong>Continuar</strong> y el sistema generará un archivo comprimido en formato ZIP conteniendo el respaldo integral.</li>
+        </ol>
+        <p>Recomendación técnica: Almacene este archivo en ubicación segura, preferentemente en sistema de almacenamiento redundante o cloud con cifrado.</p>
+        <p><em>Interfaz del gestor de base de datos:</em></p>
+        <img src="img/bckp.png" alt="Pantalla de administración de bases de datos">
+        
+        <h3 id="restauracion">4.2. Proceso de Restauración</h3>
+        <p>En caso de requerir la restauración de un backup previamente generado, el procedimiento se realiza igualmente desde la interfaz web de administración (<code>/web/database/manager</code>) mediante la función <strong>Restore</strong>.</p>
+        <img src="img/restore.png" alt="Proceso de restauración de base de datos">
+        
+        <h2 id="conclusiones">5. Conclusiones</h2>
+        <p>La plataforma Odoo proporciona un framework completo para la implementación de sistemas ERP con alta integración entre componentes. La configuración avanzada del módulo CRM en conjunción con el portal web permite establecer una arquitectura completa para la gestión del ciclo de vida de clientes desde la captación hasta la conversión y fidelización. Los mecanismos nativos de backup garantizan la integridad de la información mediante procedimientos sistematizados de respaldo que pueden automatizarse para entornos de producción. Como evolución de esta implementación, se recomienda explorar las capacidades de integración con otros módulos como Facturación, Gestión de Proyectos e Inventario para obtener una solución ERP integral.</p>
+        
+    <footer>
+        <p>Documentación técnica desarrollada por Alejandro Linares y Unai Bueno | Ciclo Formativo de Grado Superior en Administración de Sistemas Informáticos en Red</p>
+    </footer>
+</body>
+</html>
